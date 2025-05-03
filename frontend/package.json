@@ -1,0 +1,55 @@
+{
+  "name": "ict-system-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "axios": "^0.27.2",
+    "core-js": "^3.26.0",
+    "echarts": "^5.4.0",
+    "element-plus": "^2.2.20",
+    "file-saver": "^2.0.5",
+    "jsplumb": "^2.15.6",
+    "mitt": "^3.0.1",
+    "moment": "^2.29.4",
+    "path-browserify": "^1.0.1",
+    "pinia": "^2.0.23",
+    "vue": "^3.2.41",
+    "vue-router": "^4.1.6",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-plugin-eslint": "^5.0.8",
+    "@vue/cli-plugin-router": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
+    "@vue/compiler-sfc": "^3.2.41",
+    "eslint": "^8.26.0",
+    "eslint-plugin-vue": "^9.7.0",
+    "sass": "^1.56.0",
+    "sass-loader": "^13.1.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2020
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

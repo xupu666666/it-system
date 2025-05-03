@@ -1,0 +1,48 @@
+/* 自定义菜单样式 */
+
+/* 确保菜单容器有正确的高度 */
+.el-scrollbar {
+  height: calc(100% - 64px);
+}
+
+/* 修复菜单项图标 */
+.menu-item .el-icon, .submenu-title .el-icon {
+  margin-right: 0;
+  width: 24px;
+  text-align: center;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+/* 折叠状态下的子菜单 */
+.is-collapsed.is-open {
+  position: fixed !important;
+  left: 70px !important;
+  min-width: 200px !important;
+  z-index: 9999 !important;
+}
+
+/* 维修费用子菜单 */
+.menu-item-container:nth-child(3) .is-collapsed.is-open {
+  top: 120px !important;
+}
+
+/* 资产盘点子菜单 */
+.menu-item-container:nth-child(4) .is-collapsed.is-open {
+  top: 170px !important;
+}
+
+/* 网络设备子菜单 */
+.menu-item-container:nth-child(5) .is-collapsed.is-open {
+  top: 220px !important;
+}
+
+/* 物品领用子菜单 */
+.menu-item-container:nth-child(6) .is-collapsed.is-open {
+  top: 270px !important;
+}
+
+/* 系统管理子菜单 */
+.menu-item-container:nth-child(7) .is-collapsed.is-open {
+  top: 320px !important;
+}

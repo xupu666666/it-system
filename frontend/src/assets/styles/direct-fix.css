@@ -1,0 +1,41 @@
+/* 直接修复子菜单重叠问题 */
+
+/* 维修费用子菜单 */
+.submenu-popper-maintenance {
+  top: 180px !important;
+  left: 240px !important;
+}
+
+/* 资产盘点子菜单 */
+.submenu-popper-inventory {
+  top: 230px !important;
+  left: 240px !important;
+}
+
+/* 网络设备子菜单 */
+.submenu-popper-network {
+  top: 280px !important;
+  left: 240px !important;
+}
+
+/* 物品领用子菜单 */
+.submenu-popper-supplies {
+  top: 330px !important;
+  left: 240px !important;
+}
+
+/* 用户管理子菜单 */
+.submenu-popper-system {
+  top: 380px !important;
+  left: 240px !important;
+}
+
+/* 确保子菜单不重叠 */
+.el-menu--vertical .el-menu--popup {
+  position: fixed !important;
+}
+
+/* 设置更高的z-index */
+.el-menu--popup {
+  z-index: 9999 !important;
+}

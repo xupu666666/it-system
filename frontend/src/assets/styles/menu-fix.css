@@ -1,0 +1,131 @@
+/* 全局修复子菜单重叠问题 - 完全重写 */
+
+/* 重置所有弹出菜单的样式 */
+.el-menu--popup-container {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 9999 !important;
+}
+
+/* 确保弹出菜单可以接收点击事件 */
+.el-menu--popup {
+  pointer-events: auto !important;
+  background-color: #1a2234 !important;
+  border-radius: 8px !important;
+  padding: 8px 0 !important;
+  min-width: 160px !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  border: none !important;
+}
+
+/* 维修费用子菜单 */
+.el-sub-menu[aria-expanded="true"][aria-owns*="menu-"] {
+  position: relative !important;
+}
+
+/* 为每个主菜单项设置不同的z-index */
+.sidebar-menu > .el-sub-menu:nth-child(1) .el-menu--popup { z-index: 9001 !important; }
+.sidebar-menu > .el-sub-menu:nth-child(2) .el-menu--popup { z-index: 9002 !important; }
+.sidebar-menu > .el-sub-menu:nth-child(3) .el-menu--popup { z-index: 9003 !important; }
+.sidebar-menu > .el-sub-menu:nth-child(4) .el-menu--popup { z-index: 9004 !important; }
+.sidebar-menu > .el-sub-menu:nth-child(5) .el-menu--popup { z-index: 9005 !important; }
+.sidebar-menu > .el-sub-menu:nth-child(6) .el-menu--popup { z-index: 9006 !important; }
+.sidebar-menu > .el-sub-menu:nth-child(7) .el-menu--popup { z-index: 9007 !important; }
+
+/* 子菜单项样式 */
+.el-menu--popup .el-menu-item {
+  height: 40px !important;
+  line-height: 40px !important;
+  margin: 0 8px !important;
+  border-radius: 6px !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  padding: 0 16px !important;
+}
+
+.el-menu--popup .el-menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.el-menu--popup .el-menu-item.is-active {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+  color: #93C5FD !important;
+  border-right: none !important;
+}
+
+/* 修复弹出层箭头样式 */
+.el-popper.is-pure {
+  border: none !important;
+}
+
+.el-popper.is-pure .el-popper__arrow::before {
+  background: #1a2234 !important;
+  border: none !important;
+}
+
+/* 强制定位子菜单 */
+.el-menu--vertical .el-menu--popup {
+  position: absolute !important;
+  margin-top: 0 !important;
+}
+
+/* 修复子菜单中的子菜单 */
+.el-menu--popup .el-sub-menu .el-menu--popup {
+  margin-left: 5px !important;
+}
+
+/* 修复子菜单标题 */
+.el-menu--popup .el-sub-menu__title {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* 修复子菜单箭头 */
+.el-sub-menu__title .el-sub-menu__icon-arrow {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* 强制设置菜单项高度 */
+.el-menu-item, .el-sub-menu__title {
+  height: 50px !important;
+  line-height: 50px !important;
+}
+
+/* 修复子菜单中的子菜单项高度 */
+.el-menu--popup .el-menu-item, .el-menu--popup .el-sub-menu__title {
+  height: 40px !important;
+  line-height: 40px !important;
+}
+
+/* 确保子菜单不重叠 - 使用更强的选择器 */
+.el-menu--vertical[style*="position: absolute"] {
+  position: fixed !important;
+  top: auto !important;
+  left: auto !important;
+}
+
+/* 修复维修费用子菜单 */
+.el-menu-item:nth-child(3) + .el-sub-menu .el-menu--popup {
+  top: 120px !important;
+  left: 240px !important;
+}
+
+/* 修复资产盘点子菜单 */
+.el-menu-item:nth-child(4) + .el-sub-menu .el-menu--popup {
+  top: 170px !important;
+  left: 240px !important;
+}
+
+/* 修复网络设备子菜单 */
+.el-menu-item:nth-child(5) + .el-sub-menu .el-menu--popup {
+  top: 220px !important;
+  left: 240px !important;
+}
+
+/* 修复物品领用子菜单 */
+.el-menu-item:nth-child(6) + .el-sub-menu .el-menu--popup {
+  top: 270px !important;
+  left: 240px !important;
+}

@@ -1,0 +1,84 @@
+version: '3.8'
+
+# 注意：本项目使用的是本地直接安装的MySQL数据库，而不是Docker容器
+# 如需使用Docker容器运行MySQL，请取消下方MySQL服务的注释并配置
+
+services:
+  # MongoDB 服务 (已弃用，项目已迁移到MySQL)
+  mongodb:
+    image: mongo:5.0
+    container_name: ict-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_DATABASE=ict_system
+    networks:
+      - ict-network
+
+  # MySQL服务配置示例 (未启用)
+  # mysql:
+  #   image: mysql:8.0
+  #   container_name: ict-mysql
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - mysql_data:/var/lib/mysql
+  #   restart: unless-stopped
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=xp198997
+  #     - MYSQL_DATABASE=ict_system
+  #   networks:
+  #     - ict-network
+
+  # 后端服务
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ict-backend
+    ports:
+      - "8090:8090"
+    depends_on:
+      - mongodb
+    environment:
+      # 注意：使用本地直接安装的MySQL，而不是Docker容器
+      # 以下MongoDB配置已弃用，保留仅作参考
+      - SPRING_DATA_MONGODB_HOST=mongodb
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SPRING_DATA_MONGODB_DATABASE=ict_system
+      # MySQL配置 - 使用host.docker.internal连接宿主机的MySQL
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/ict_system?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=xp198997
+    restart: unless-stopped
+    networks:
+      - ict-network
+
+  # 前端服务
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: ict-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - ict-network
+
+# 持久化卷
+volumes:
+  mongodb_data:
+    driver: local
+  # mysql_data:  # MySQL数据卷（未启用，因为使用的是本地直接安装的MySQL）
+  #   driver: local
+
+# 网络配置
+networks:
+  ict-network:
+    driver: bridge
